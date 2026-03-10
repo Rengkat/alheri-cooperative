@@ -1,0 +1,2726 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alheri Cattle Multi-Purpose Co-operative Society Ltd.</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --earth: #2d1a0e;
+      --soil: #5c3a1e;
+      --clay: #8b5e3c;
+      --wheat: #c8a96e;
+      --golden: #d4a843;
+      --hay: #e8d5a3;
+      --cream: #faf6ee;
+      --green-deep: #1a3a1a;
+      --green-mid: #2d5a27;
+      --green-light: #4a8c3f;
+      --green-pale: #7ab870;
+      --sky: #e8f4ea;
+      --white: #ffffff;
+      --shadow: rgba(45, 26, 14, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--earth);
+      overflow-x: hidden;
+    }
+
+    /* ============ NAVIGATION ============ */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(45, 26, 14, 0.97);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--golden);
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--golden);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.3);
+    }
+
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--golden);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      text-transform: uppercase;
+    }
+
+    .logo-sub {
+      font-size: 0.62rem;
+      color: var(--hay);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--hay);
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 50%;
+      right: 50%;
+      height: 2px;
+      background: var(--golden);
+      transition: all 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--golden);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      left: 16px;
+      right: 16px;
+    }
+
+    .nav-links a.active {
+      color: var(--golden);
+    }
+
+    .nav-cta {
+      background: var(--golden) !important;
+      color: var(--earth) !important;
+      padding: 8px 20px !important;
+      border-radius: 4px !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--wheat) !important;
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    .hamburger span {
+      width: 26px;
+      height: 2px;
+      background: var(--golden);
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    /* ============ PAGES ============ */
+    .page {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--earth) 50%, var(--green-deep) 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 72px;
+    }
+
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 80%, rgba(74, 140, 63, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(212, 168, 67, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(45, 90, 39, 0.1) 0%, transparent 70%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212, 168, 67, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 168, 67, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 168, 67, 0.15);
+      border: 1px solid rgba(212, 168, 67, 0.4);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 1.5rem;
+      animation: fadeSlideDown 0.8s ease forwards;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.8rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      animation: fadeSlideUp 0.8s 0.2s ease both;
+    }
+
+    .hero-title span {
+      color: var(--golden);
+    }
+
+    .hero-desc {
+      font-family: 'Merriweather', serif;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--hay);
+      margin-bottom: 2.5rem;
+      animation: fadeSlideUp 0.8s 0.4s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeSlideUp 0.8s 0.6s ease both;
+    }
+
+    .btn-primary {
+      background: var(--golden);
+      color: var(--earth);
+      padding: 14px 32px;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--wheat);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 168, 67, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 32px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--golden);
+      color: var(--golden);
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeSlideLeft 1s 0.3s ease both;
+    }
+
+    .hero-emblem {
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle at 30% 30%, rgba(212, 168, 67, 0.2), rgba(74, 140, 63, 0.1));
+      border: 2px solid rgba(212, 168, 67, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 80px rgba(74, 140, 63, 0.3), inset 0 0 60px rgba(45, 26, 14, 0.4);
+    }
+
+    .hero-emblem::before {
+      content: '';
+      position: absolute;
+      inset: 15px;
+      border: 1px solid rgba(212, 168, 67, 0.2);
+      border-radius: 50%;
+    }
+
+    .hero-emblem::after {
+      content: '';
+      position: absolute;
+      inset: 30px;
+      border: 1px dashed rgba(212, 168, 67, 0.15);
+      border-radius: 50%;
+      animation: rotate 20s linear infinite;
+    }
+
+    .emblem-inner {
+      text-align: center;
+      z-index: 2;
+      position: relative;
+    }
+
+    .emblem-icon {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .emblem-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--golden);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      line-height: 1.4;
+    }
+
+    .emblem-sub {
+      font-size: 0.7rem;
+      color: var(--hay);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(212, 168, 67, 0.2);
+      animation: fadeSlideUp 0.8s 0.8s ease both;
+    }
+
+    .stat-item {
+      text-align: left;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--golden);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--hay);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ============ SECTIONS ============ */
+    section {
+      padding: 6rem 0;
+    }
+
+    .section-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: var(--green-light);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--earth);
+      margin-bottom: 1.25rem;
+    }
+
+    .section-desc {
+      font-family: 'Merriweather', serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--soil);
+      max-width: 600px;
+    }
+
+    /* ============ FEATURES ============ */
+    .features-section {
+      background: var(--white);
+      position: relative;
+    }
+
+    .features-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-deep), var(--golden), var(--green-light));
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .feature-card {
+      padding: 2.5rem;
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      border-radius: 8px;
+      background: var(--cream);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green-mid), var(--golden));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 12px 40px var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 12px rgba(45, 90, 39, 0.3);
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--earth);
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-text {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--soil);
+    }
+
+    /* ============ MARQUEE STRIP ============ */
+    .marquee-strip {
+      background: var(--green-deep);
+      padding: 1rem 0;
+      overflow: hidden;
+      border-top: 1px solid rgba(212, 168, 67, 0.3);
+      border-bottom: 1px solid rgba(212, 168, 67, 0.3);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--golden);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green-pale);
+      border-radius: 50%;
+    }
+
+    /* ============ ABOUT PAGE ============ */
+    .about-hero {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--soil) 100%);
+      padding: 10rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 70% 50%, rgba(212, 168, 67, 0.1) 0%, transparent 60%);
+    }
+
+    .page-hero-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-hero-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-hero-label::before {
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: var(--golden);
+    }
+
+    .page-hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero-desc {
+      font-family: 'Merriweather', serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--hay);
+      max-width: 700px;
+    }
+
+    .about-content {
+      background: var(--white);
+      padding: 6rem 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-family: 'Merriweather', serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--soil);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card-big {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      border-radius: 16px;
+      padding: 3rem;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card-big::before {
+      content: '🐄';
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      font-size: 8rem;
+      opacity: 0.15;
+    }
+
+    .about-card-big h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--golden);
+    }
+
+    .about-card-big p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      opacity: 0.85;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .value-item {
+      background: var(--cream);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .value-item:hover {
+      background: var(--sky);
+      border-color: var(--green-light);
+      transform: translateY(-2px);
+    }
+
+    .value-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--earth);
+      margin-bottom: 0.4rem;
+    }
+
+    .value-text {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--soil);
+    }
+
+    /* Leadership */
+    .leadership-section {
+      background: var(--cream);
+    }
+
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .leader-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .leader-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px var(--shadow);
+    }
+
+    .leader-avatar {
+      height: 160px;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+    }
+
+    .leader-avatar::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(transparent, var(--white));
+    }
+
+    .leader-info {
+      padding: 1.5rem;
+    }
+
+    .leader-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--earth);
+      margin-bottom: 4px;
+    }
+
+    .leader-role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .leader-bio {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: var(--soil);
+    }
+
+    /* ============ SERVICES PAGE ============ */
+    .services-hero {
+      background: linear-gradient(135deg, var(--earth) 0%, var(--green-deep) 100%);
+      padding: 10rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .service-card-header {
+      padding: 2.5rem 2.5rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card:nth-child(1) .service-card-header {
+      background: linear-gradient(135deg, #1a3a1a, #2d5a27);
+    }
+
+    .service-card:nth-child(2) .service-card-header {
+      background: linear-gradient(135deg, #3a2010, #5c3a1e);
+    }
+
+    .service-card:nth-child(3) .service-card-header {
+      background: linear-gradient(135deg, #2a3a10, #4a6020);
+    }
+
+    .service-card:nth-child(4) .service-card-header {
+      background: linear-gradient(135deg, #1a2a3a, #2a4a5c);
+    }
+
+    .service-card:nth-child(5) .service-card-header {
+      background: linear-gradient(135deg, #3a1a2a, #5c2a40);
+    }
+
+    .service-card:nth-child(6) .service-card-header {
+      background: linear-gradient(135deg, #2a3010, #4a5020);
+    }
+
+    .service-header-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .service-header-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--golden);
+      background: rgba(212, 168, 67, 0.15);
+      padding: 3px 10px;
+      border-radius: 100px;
+      display: inline-block;
+    }
+
+    .service-card-body {
+      padding: 2rem 2.5rem 2.5rem;
+      flex: 1;
+    }
+
+    .service-body-desc {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--soil);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+      list-style: none;
+    }
+
+    .service-features li {
+      padding: 6px 0;
+      font-size: 0.85rem;
+      color: var(--soil);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(200, 169, 110, 0.15);
+    }
+
+    .service-features li:last-child {
+      border-bottom: none;
+    }
+
+    .service-features li::before {
+      content: '✓';
+      width: 20px;
+      height: 20px;
+      background: var(--green-light);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Pricing Section */
+    .pricing-section {
+      background: var(--earth);
+    }
+
+    .pricing-section .section-title {
+      color: var(--white);
+    }
+
+    .pricing-section .section-desc {
+      color: var(--hay);
+    }
+
+    .pricing-section .section-label {
+      color: var(--golden);
+    }
+
+    .pricing-section .section-label::before {
+      background: var(--golden);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .pricing-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 168, 67, 0.2);
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.featured {
+      background: var(--golden);
+      border-color: var(--golden);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: var(--green-light);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .pricing-tier {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 1rem;
+    }
+
+    .pricing-card.featured .pricing-tier {
+      color: var(--earth);
+    }
+
+    .pricing-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    .pricing-card.featured .pricing-name {
+      color: var(--earth);
+    }
+
+    .pricing-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--golden);
+      margin: 1.5rem 0;
+    }
+
+    .pricing-card.featured .pricing-amount {
+      color: var(--earth);
+    }
+
+    .pricing-amount span {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    .pricing-perks {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-perks li {
+      padding: 8px 0;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pricing-card.featured .pricing-perks li {
+      color: var(--earth);
+      border-bottom-color: rgba(45, 26, 14, 0.12);
+    }
+
+    .pricing-perks li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-perks li::before {
+      content: '◆';
+      font-size: 0.4rem;
+      color: var(--golden);
+      flex-shrink: 0;
+    }
+
+    .pricing-card.featured .pricing-perks li::before {
+      color: var(--earth);
+    }
+
+    /* ============ CONTACT PAGE ============ */
+    .contact-hero {
+      background: linear-gradient(135deg, var(--green-mid) 0%, var(--earth) 100%);
+      padding: 10rem 0 6rem;
+      position: relative;
+    }
+
+    .contact-main {
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 5rem;
+      margin-top: 1rem;
+    }
+
+    .contact-info-card {
+      background: var(--green-deep);
+      border-radius: 16px;
+      padding: 3rem;
+      color: var(--white);
+      position: sticky;
+      top: 100px;
+      align-self: start;
+    }
+
+    .contact-info-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--golden);
+      margin-bottom: 2rem;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(212, 168, 67, 0.15);
+    }
+
+    .contact-info-item:last-of-type {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(212, 168, 67, 0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      border: 1px solid rgba(212, 168, 67, 0.2);
+    }
+
+    .contact-info-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 4px;
+    }
+
+    .contact-info-value {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--hay);
+    }
+
+    /* Form */
+    .contact-form-wrap {
+      padding: 1rem 0;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--earth);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: var(--soil);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--soil);
+      margin-bottom: 8px;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid rgba(200, 169, 110, 0.3);
+      border-radius: 8px;
+      background: var(--cream);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      color: var(--earth);
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--green-light);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(74, 140, 63, 0.1);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-select {
+      cursor: pointer;
+    }
+
+    .form-submit {
+      background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+      color: var(--white);
+      padding: 16px 48px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-submit:hover {
+      background: linear-gradient(135deg, var(--green-deep), var(--earth));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45, 90, 39, 0.3);
+    }
+
+    .form-success {
+      display: none;
+      background: var(--sky);
+      border: 2px solid var(--green-light);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .form-success.show {
+      display: block;
+      animation: fadeSlideUp 0.5s ease;
+    }
+
+    .form-success h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--green-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      font-size: 0.9rem;
+      color: var(--soil);
+    }
+
+    /* Map placeholder */
+    .map-section {
+      background: var(--cream);
+      padding: 5rem 0;
+    }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+      border-radius: 16px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid rgba(212, 168, 67, 0.2);
+    }
+
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212, 168, 67, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212, 168, 67, 0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .map-pin {
+      font-size: 3.5rem;
+      animation: bounce 2s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+
+    .map-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--golden);
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+    }
+
+    .map-sub {
+      font-size: 0.85rem;
+      color: var(--hay);
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 400px;
+      line-height: 1.6;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      background: var(--earth);
+      padding: 5rem 0 2rem;
+      border-top: 3px solid var(--golden);
+    }
+
+    .footer-inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo-name {
+      font-size: 0.95rem;
+    }
+
+    .footer-desc {
+      font-family: 'Merriweather', serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--hay);
+      margin: 1rem 0 1.5rem;
+      opacity: 0.8;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      background: rgba(212, 168, 67, 0.1);
+      border: 1px solid rgba(212, 168, 67, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: var(--golden);
+    }
+
+    .social-btn:hover {
+      background: var(--golden);
+      color: var(--earth);
+    }
+
+    .footer-col-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--golden);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(212, 168, 67, 0.2);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--hay);
+      opacity: 0.75;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--golden);
+      padding-left: 4px;
+    }
+
+    .footer-links a::before {
+      content: '›';
+      color: var(--green-pale);
+      font-size: 1.1rem;
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(212, 168, 67, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--hay);
+      opacity: 0.6;
+    }
+
+    .footer-reg {
+      font-size: 0.75rem;
+      color: var(--golden);
+      opacity: 0.7;
+    }
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonials-section {
+      background: var(--sky);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      transition: all 0.3s ease;
+      border-left: 4px solid var(--green-light);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px var(--shadow);
+    }
+
+    .testimonial-quote {
+      font-size: 2rem;
+      color: var(--green-light);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-family: 'Merriweather', serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--soil);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .author-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      border: 2px solid var(--green-light);
+    }
+
+    .author-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--earth);
+    }
+
+    .author-role {
+      font-size: 0.75rem;
+      color: var(--green-light);
+    }
+
+    /* ============ CTA SECTION ============ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--soil) 50%, var(--green-deep) 100%);
+      text-align: center;
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(212, 168, 67, 0.1) 0%, transparent 60%);
+    }
+
+    .cta-section .section-label {
+      justify-content: center;
+    }
+
+    .cta-section .section-label::before {
+      display: none;
+    }
+
+    .cta-section .section-label::after {
+      content: '';
+      width: 30px;
+      height: 2px;
+      background: var(--green-light);
+    }
+
+    .cta-section .section-title {
+      color: var(--white);
+    }
+
+    .cta-section .section-desc {
+      color: var(--hay);
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ============ ANIMATIONS ============ */
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    /* Scroll animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 900px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .leadership-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--earth);
+        padding: 1rem;
+        border-bottom: 2px solid var(--golden);
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .leadership-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons .btn-primary,
+      .hero-buttons .btn-outline {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#" onclick="showPage('home')">
+        <div class="logo-icon">🐄</div>
+        <div class="logo-text-wrap">
+          <span class="logo-name">Alheri Cattle Co-op</span>
+          <span class="logo-sub">Multi-Purpose Society Ltd.</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+        <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+        <li><a href="#" onclick="showPage('services')" id="nav-services">Services</a></li>
+        <li><a href="#" onclick="showPage('contact')" id="nav-contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- HOME PAGE -->
+  <!-- ============================================================ -->
+  <div class="page active" id="page-home">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-pattern"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">🌾 Serving Taraba State Since Incorporation</div>
+          <h1 class="hero-title">
+            Alheri Cattle<br>
+            <span>Multi-Purpose</span><br>
+            Co-operative Society
+          </h1>
+          <p class="hero-desc">
+            Empowering farmers and livestock keepers across Jalingo, Taraba State through collective strength, modern
+            agricultural practices, and sustainable co-operative development for a prosperous future.
+          </p>
+          <div class="hero-buttons">
+            <button class="btn-primary" onclick="showPage('services')">Explore Our Services</button>
+            <button class="btn-outline" onclick="showPage('about')">Learn More</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number" id="count1">0</div>
+              <div class="stat-label">Active Members</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="count2">0</div>
+              <div class="stat-label">Cattle Fattened</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="count3">0</div>
+              <div class="stat-label">Years of Service</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="count4">0</div>
+              <div class="stat-label">LGAs Covered</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-emblem">
+            <div class="emblem-inner">
+              <span class="emblem-icon">🐄</span>
+              <div class="emblem-title">Alheri Cattle<br>Co-operative</div>
+              <div class="emblem-sub">Jalingo · Taraba State</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-strip">
+      <div class="marquee-track" id="marqueeTrack">
+        <div class="marquee-item"><span class="marquee-dot"></span>Cattle Fattening Programs</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Agricultural Loans & Credit</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Livestock Insurance</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Veterinary Support</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Market Linkage Services</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Member Savings Scheme</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Training & Capacity Building</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Input Supply & Equipment</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Cattle Fattening Programs</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Agricultural Loans & Credit</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Livestock Insurance</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Veterinary Support</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Market Linkage Services</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Member Savings Scheme</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Training & Capacity Building</div>
+        <div class="marquee-item"><span class="marquee-dot"></span>Input Supply & Equipment</div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="section-inner">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Built on Trust,<br>Grown Through Unity</h2>
+        <p class="section-desc">Our co-operative society exists to lift every member — from smallholder livestock
+          keepers to large-scale farmers — through collective resources and shared expertise.</p>
+
+        <div class="features-grid">
+          <div class="feature-card reveal">
+            <div class="feature-icon">🤝</div>
+            <div class="feature-title">Member-Owned Structure</div>
+            <p class="feature-text">Every member has an equal voice in how the society is run. Profits and benefits are
+              shared equitably based on participation and contribution levels.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon">📈</div>
+            <div class="feature-title">Financial Empowerment</div>
+            <p class="feature-text">Access low-interest agricultural loans, member savings schemes, and co-operative
+              dividend returns that grow your wealth year over year.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon">🐄</div>
+            <div class="feature-title">Expert Cattle Fattening</div>
+            <p class="feature-text">Professional cattle fattening programs using proven feeding protocols that maximize
+              weight gain, health outcomes, and market-ready timelines.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon">🌱</div>
+            <div class="feature-title">Sustainable Agriculture</div>
+            <p class="feature-text">We promote eco-friendly farming practices, responsible land use, and sustainable
+              livestock management for long-term community prosperity.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon">🏥</div>
+            <div class="feature-title">Veterinary & Health Support</div>
+            <p class="feature-text">Subsidized access to qualified veterinarians, vaccines, deworming programs, and
+              livestock health monitoring services for all members.</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon">🛒</div>
+            <div class="feature-title">Market Access & Linkage</div>
+            <p class="feature-text">We connect our members directly to buyers, abattoirs, and regional markets,
+              eliminating middlemen and ensuring fair pricing for your livestock.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <div class="section-inner">
+        <div class="section-label">Member Stories</div>
+        <h2 class="section-title">What Our Members Say</h2>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card reveal">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Joining Alheri Co-operative changed my life. I accessed a loan to buy three
+              heifers, and within a year I had doubled my herd through the fattening program. The veterinary support is
+              exceptional.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">👨‍🌾</div>
+              <div>
+                <div class="author-name">Alhaji Musa Ibrahim</div>
+                <div class="author-role">Member since 2019 · Jalingo LGA</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card reveal">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">The savings scheme here is unlike any bank. My money grows, and I can access it
+              when I need it for farm inputs. The trainings have also improved my feeding management greatly.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">👩‍🌾</div>
+              <div>
+                <div class="author-name">Hajiya Fatima Abdullahi</div>
+                <div class="author-role">Member since 2021 · Yorro LGA</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card reveal">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">The market linkage program is fantastic. I no longer have to travel far to sell
+              my cattle. Alheri Society connects us directly with trusted buyers and we always get fair prices.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">👨‍🌾</div>
+              <div>
+                <div class="author-name">Mr. Daniel Silas</div>
+                <div class="author-role">Member since 2020 · Zing LGA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="section-inner" style="position:relative;z-index:2;text-align:center;">
+        <div class="section-label" style="justify-content:center;">Join Our Society</div>
+        <h2 class="section-title" style="color:var(--white);">Become a Member Today<br>and Grow Together</h2>
+        <p class="section-desc" style="color:var(--hay);margin:0 auto 2.5rem;max-width:550px;">Membership is open to all
+          farmers, livestock keepers, and agribusiness operators in Taraba State. Join hundreds of members already
+          benefiting from our co-operative services.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <button class="btn-primary" onclick="showPage('contact')">Apply for Membership</button>
+          <button class="btn-outline" onclick="showPage('services')">View Our Services</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ABOUT PAGE -->
+  <!-- ============================================================ -->
+  <div class="page" id="page-about">
+    <div class="about-hero">
+      <div class="about-hero-pattern"></div>
+      <div class="page-hero-content">
+        <div class="page-hero-label">About Us</div>
+        <h1 class="page-hero-title">Our Story, Vision<br>&amp; Purpose</h1>
+        <p class="page-hero-desc">Rooted in the rich agricultural landscape of Taraba State, Alheri Cattle Multi-Purpose
+          Co-operative Society Limited was established to harness the collective power of livestock farmers and create
+          lasting economic change.</p>
+      </div>
+    </div>
+
+    <section class="about-content">
+      <div class="section-inner">
+        <div class="about-grid">
+          <div class="about-text">
+            <div class="section-label">Who We Are</div>
+            <h2 class="section-title">A Co-operative Rooted in Community</h2>
+            <p>Alheri Cattle Multi-Purpose Co-operative Society Limited (ACMPCSL) is a registered co-operative society
+              headquartered at No. Gombe Street, Turaki A' Ward, Jalingo, Taraba State. We were established with the
+              singular mission of transforming the livelihoods of livestock farmers and agricultural entrepreneurs
+              through co-operative principles.</p>
+            <p>Our society brings together cattle farmers, smallholders, traders, and agribusiness stakeholders under a
+              unified platform where resources are pooled, risks are shared, and prosperity is built collectively. We
+              operate across multiple Local Government Areas in Taraba State, with a growing membership that continues
+              to benefit from our expanding range of services.</p>
+            <p>Grounded in the seven principles of co-operation — voluntary membership, democratic member control,
+              member economic participation, autonomy, education, co-operation among co-operatives, and concern for
+              community — we deliver real, tangible value to every member.</p>
+            <p>As a multi-purpose society, we do not limit ourselves to one service. We offer cattle fattening,
+              financial services, input supply, veterinary support, market linkage, training, and more — making us a
+              one-stop hub for agricultural development in our region.</p>
+
+            <div style="margin-top:2.5rem;">
+              <div class="section-label" style="margin-bottom:1rem;">Our Pillars</div>
+              <div class="values-grid">
+                <div class="value-item reveal">
+                  <div class="value-icon">🎯</div>
+                  <div class="value-title">Our Mission</div>
+                  <p class="value-text">To empower livestock farmers through co-operative unity, financial access, and
+                    modern agricultural knowledge.</p>
+                </div>
+                <div class="value-item reveal">
+                  <div class="value-icon">🔭</div>
+                  <div class="value-title">Our Vision</div>
+                  <p class="value-text">To become the leading agricultural co-operative in North-East Nigeria, driving
+                    rural prosperity and food security.</p>
+                </div>
+                <div class="value-item reveal">
+                  <div class="value-icon">⚖️</div>
+                  <div class="value-title">Integrity</div>
+                  <p class="value-text">We operate with transparency and accountability in all financial and
+                    administrative dealings.</p>
+                </div>
+                <div class="value-item reveal">
+                  <div class="value-icon">🌍</div>
+                  <div class="value-title">Sustainability</div>
+                  <p class="value-text">Long-term thinking guides every program — for the land, the animals, and the
+                    people.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-visual">
+            <div class="about-card-big reveal">
+              <h3>🌾 Our Agricultural Impact</h3>
+              <p>Since our founding, Alheri Co-operative has facilitated the fattening and sale of thousands of cattle,
+                disbursed millions of naira in member loans, and trained hundreds of farmers in best livestock
+                management practices. We are proud partners in the agricultural development of Taraba State.</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div
+                style="background:var(--cream);border:1px solid rgba(200,169,110,0.3);border-radius:10px;padding:1.5rem;text-align:center;"
+                class="reveal">
+                <div style="font-size:2rem;margin-bottom:8px;">🏆</div>
+                <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--earth);">
+                  Registered Society</div>
+                <div style="font-size:0.78rem;color:var(--soil);margin-top:4px;">Fully incorporated under Nigerian law
+                </div>
+              </div>
+              <div
+                style="background:var(--cream);border:1px solid rgba(200,169,110,0.3);border-radius:10px;padding:1.5rem;text-align:center;"
+                class="reveal">
+                <div style="font-size:2rem;margin-bottom:8px;">📍</div>
+                <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--earth);">
+                  Taraba Based</div>
+                <div style="font-size:0.78rem;color:var(--soil);margin-top:4px;">Jalingo, Taraba State, Nigeria</div>
+              </div>
+              <div
+                style="background:var(--cream);border:1px solid rgba(200,169,110,0.3);border-radius:10px;padding:1.5rem;text-align:center;"
+                class="reveal">
+                <div style="font-size:2rem;margin-bottom:8px;">🤝</div>
+                <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--earth);">
+                  Multi-Purpose</div>
+                <div style="font-size:0.78rem;color:var(--soil);margin-top:4px;">6+ service areas for members</div>
+              </div>
+              <div
+                style="background:var(--cream);border:1px solid rgba(200,169,110,0.3);border-radius:10px;padding:1.5rem;text-align:center;"
+                class="reveal">
+                <div style="font-size:2rem;margin-bottom:8px;">💰</div>
+                <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--earth);">
+                  Credit Access</div>
+                <div style="font-size:0.78rem;color:var(--soil);margin-top:4px;">Affordable loans for all members</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership -->
+    <section class="leadership-section">
+      <div class="section-inner">
+        <div class="section-label">Our Leadership</div>
+        <h2 class="section-title">The Board &amp; Management</h2>
+        <p class="section-desc">Our dedicated team of experienced agricultural professionals and community leaders
+          guides the society toward its goals with integrity and purpose.</p>
+
+        <div class="leadership-grid">
+          <div class="leader-card reveal">
+            <div class="leader-avatar">👨‍💼</div>
+            <div class="leader-info">
+              <div class="leader-name">Alhaji Umar Alheri</div>
+              <div class="leader-role">Chairman / President</div>
+              <p class="leader-bio">A seasoned cattle farmer and community leader with over 20 years of experience in
+                livestock agriculture and co-operative administration in Taraba State.</p>
+            </div>
+          </div>
+          <div class="leader-card reveal">
+            <div class="leader-avatar">👩‍💼</div>
+            <div class="leader-info">
+              <div class="leader-name">Mrs. Rhoda Danladi</div>
+              <div class="leader-role">Secretary General</div>
+              <p class="leader-bio">A trained agricultural extension officer who brings organizational expertise and
+                strong community relations skills to the administrative management of the society.</p>
+            </div>
+          </div>
+          <div class="leader-card reveal">
+            <div class="leader-avatar">👨‍💻</div>
+            <div class="leader-info">
+              <div class="leader-name">Mr. Emmanuel Tarfa</div>
+              <div class="leader-role">Treasurer / Finance Officer</div>
+              <p class="leader-bio">A certified accountant with specialization in cooperative financial management,
+                overseeing member savings, loan disbursement, and society accounts.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="section-inner" style="position:relative;z-index:2;text-align:center;">
+        <div class="section-label" style="justify-content:center;">Ready to Join?</div>
+        <h2 class="section-title" style="color:var(--white);">Open Membership for All<br>Farmers in Taraba State</h2>
+        <p class="section-desc" style="color:var(--hay);margin:0 auto 2.5rem;max-width:550px;">Register today and start
+          accessing the full suite of benefits our co-operative offers — from financial support to veterinary services.
+        </p>
+        <button class="btn-primary" onclick="showPage('contact')">Get in Touch</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- SERVICES PAGE -->
+  <!-- ============================================================ -->
+  <div class="page" id="page-services">
+    <div class="services-hero">
+      <div class="about-hero-pattern"></div>
+      <div class="page-hero-content">
+        <div class="page-hero-label">Our Services</div>
+        <h1 class="page-hero-title">Comprehensive Agricultural<br>Co-operative Services</h1>
+        <p class="page-hero-desc">From cattle fattening to financial services, market linkage to veterinary support — we
+          provide an integrated ecosystem of solutions for every member's success.</p>
+      </div>
+    </div>
+
+    <section style="background:var(--white);padding:6rem 0;">
+      <div class="section-inner">
+        <div class="section-label">What We Offer</div>
+        <h2 class="section-title">Our Core Service Areas</h2>
+
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="service-card-header">
+              <span class="service-header-icon">🐄</span>
+              <div class="service-header-title">Cattle Fattening Program</div>
+              <span class="service-header-tag">Core Service</span>
+            </div>
+            <div class="service-card-body">
+              <p class="service-body-desc">Our flagship cattle fattening program uses scientifically developed feeding
+                protocols and expert management to bring your cattle to premium market weight in optimal time.</p>
+              <ul class="service-features">
+                <li>Expert nutritional feeding schedules</li>
+                <li>Health monitoring & disease prevention</li>
+                <li>Growth tracking and records management</li>
+                <li>Group fattening for shared costs</li>
+                <li>Market-ready slaughter assessment</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card-header">
+              <span class="service-header-icon">💰</span>
+              <div class="service-header-title">Agricultural Finance &amp; Loans</div>
+              <span class="service-header-tag">Financial Services</span>
+            </div>
+            <div class="service-card-body">
+              <p class="service-body-desc">Access affordable credit facilities tailored specifically for livestock
+                farmers. Our loan products are designed with flexible repayment schedules aligned with farming cycles.
+              </p>
+              <ul class="service-features">
+                <li>Low-interest member loans (10–15% p.a.)</li>
+                <li>Seasonal credit for farm inputs</li>
+                <li>Emergency loan facilities</li>
+                <li>Member savings & deposit schemes</li>
+                <li>Annual dividend on share capital</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card-header">
+              <span class="service-header-icon">🏥</span>
+              <div class="service-header-title">Veterinary &amp; Health Services</div>
+              <span class="service-header-tag">Animal Health</span>
+            </div>
+            <div class="service-card-body">
+              <p class="service-body-desc">Subsidized veterinary care is available to all registered members, including
+                scheduled herd visits, emergency response, and preventive medicine programs.</p>
+              <ul class="service-features">
+                <li>Scheduled farm veterinary visits</li>
+                <li>Vaccination & immunization programs</li>
+                <li>Deworming & parasite control</li>
+                <li>Artificial insemination services</li>
+                <li>Emergency veterinary response</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card-header">
+              <span class="service-header-icon">🛒</span>
+              <div class="service-header-title">Market Linkage &amp; Trade</div>
+              <span class="service-header-tag">Market Access</span>
+            </div>
+            <div class="service-card-body">
+              <p class="service-body-desc">We eliminate exploitative middlemen by connecting our members directly to
+                verified buyers, abattoirs, processing plants, and regional livestock markets.</p>
+              <ul class="service-features">
+                <li>Direct buyer-seller matchmaking</li>
+                <li>Collective bargaining for better prices</li>
+                <li>Transport & logistics coordination</li>
+                <li>Market price intelligence sharing</li>
+                <li>Export linkage partnerships</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card-header">
+              <span class="service-header-icon">🌱</span>
+              <div class="service-header-title">Input Supply &amp; Equipment</div>
+              <span class="service-header-tag">Farm Inputs</span>
+            </div>
+            <div class="service-card-body">
+              <p class="service-body-desc">Through bulk purchasing power, we supply quality farm inputs — feeds,
+                medications, equipment — at significantly reduced prices to registered members.</p>
+              <ul class="service-features">
+                <li>Quality feed concentrates & supplements</li>
+                <li>Agricultural chemicals & medicines</li>
+                <li>Farm tools & equipment hire</li>
+                <li>Subsidized prices for members</li>
+                <li>Delivery to farm gate available</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-card-header">
+              <span class="service-header-icon">📚</span>
+              <div class="service-header-title">Training &amp; Capacity Building</div>
+              <span class="service-header-tag">Knowledge</span>
+            </div>
+            <div class="service-card-body">
+              <p class="service-body-desc">Regular workshops, field days, and training sessions are organized to build
+                the skills of our members in modern livestock production, record-keeping, and entrepreneurship.</p>
+              <ul class="service-features">
+                <li>Modern cattle management workshops</li>
+                <li>Farm record-keeping & bookkeeping</li>
+                <li>Business development training</li>
+                <li>Youth in agriculture programs</li>
+                <li>Women empowerment initiatives</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Membership Pricing -->
+    <section class="pricing-section">
+      <div class="section-inner">
+        <div class="section-label">Membership Tiers</div>
+        <h2 class="section-title">Transparent & Affordable<br>Membership Plans</h2>
+        <p class="section-desc">Choose the membership tier that fits your farming scale. All members enjoy access to
+          core co-operative services.</p>
+
+        <div class="pricing-grid">
+          <div class="pricing-card reveal">
+            <div class="pricing-tier">🌱 Starter Tier</div>
+            <div class="pricing-name">Basic Member</div>
+            <div class="pricing-amount">₦5,000<span>/year</span></div>
+            <ul class="pricing-perks">
+              <li>Access to market linkage</li>
+              <li>Training & workshops</li>
+              <li>Member savings account</li>
+              <li>Subsidized input supply</li>
+              <li>Newsletter & price alerts</li>
+            </ul>
+            <button class="btn-primary" style="width:100%;text-align:center;" onclick="showPage('contact')">Join
+              Now</button>
+          </div>
+
+          <div class="pricing-card featured reveal">
+            <div class="pricing-badge">Popular</div>
+            <div class="pricing-tier">🐄 Full Tier</div>
+            <div class="pricing-name">Full Member</div>
+            <div class="pricing-amount">₦15,000<span>/year</span></div>
+            <ul class="pricing-perks">
+              <li>All Basic member benefits</li>
+              <li>Cattle fattening program access</li>
+              <li>Agricultural loan eligibility</li>
+              <li>Subsidized veterinary services</li>
+              <li>Annual dividend payment</li>
+              <li>Voting rights at AGM</li>
+            </ul>
+            <button class="btn-primary" style="width:100%;text-align:center;background:var(--earth);"
+              onclick="showPage('contact')">Join Now</button>
+          </div>
+
+          <div class="pricing-card reveal">
+            <div class="pricing-tier">🏆 Premium Tier</div>
+            <div class="pricing-name">Corporate Member</div>
+            <div class="pricing-amount">₦50,000<span>/year</span></div>
+            <ul class="pricing-perks">
+              <li>All Full member benefits</li>
+              <li>Priority loan processing</li>
+              <li>Dedicated agric extension officer</li>
+              <li>Board election eligibility</li>
+              <li>Group fattening preference</li>
+              <li>Enterprise support services</li>
+            </ul>
+            <button class="btn-primary" style="width:100%;text-align:center;" onclick="showPage('contact')">Join
+              Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT PAGE -->
+  <!-- ============================================================ -->
+  <div class="page" id="page-contact">
+    <div class="contact-hero">
+      <div class="about-hero-pattern"></div>
+      <div class="page-hero-content">
+        <div class="page-hero-label">Contact Us</div>
+        <h1 class="page-hero-title">Get in Touch With Us</h1>
+        <p class="page-hero-desc">Whether you want to join our co-operative, learn about our services, or simply reach
+          out — we are here and happy to hear from you. Our office is open Monday to Saturday.</p>
+      </div>
+    </div>
+
+    <section class="contact-main" style="padding:5rem 0;">
+      <div class="section-inner">
+        <div class="contact-grid">
+
+          <!-- Info Card -->
+          <div>
+            <div class="contact-info-card">
+              <div class="contact-info-title">📍 Our Office</div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">📍</div>
+                <div>
+                  <div class="contact-info-label">Physical Address</div>
+                  <div class="contact-info-value">No. Gombe Street,<br>Turaki A' Ward,<br>Jalingo, Taraba
+                    State,<br>Nigeria</div>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">✉️</div>
+                <div>
+                  <div class="contact-info-label">Email Address</div>
+                  <div class="contact-info-value">alihericattlefatteningmultipur<br>@gmail.com</div>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">🕐</div>
+                <div>
+                  <div class="contact-info-label">Office Hours</div>
+                  <div class="contact-info-value">Monday – Friday: 8:00am – 5:00pm<br>Saturday: 9:00am –
+                    1:00pm<br>Sunday: Closed</div>
+                </div>
+              </div>
+
+              <div class="contact-info-item">
+                <div class="contact-info-icon">🌐</div>
+                <div>
+                  <div class="contact-info-label">Society Registration</div>
+                  <div class="contact-info-value">Registered under the Nigerian<br>Co-operative Societies Law,<br>Taraba
+                    State</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrap">
+            <div class="form-title">Send Us a Message</div>
+            <p class="form-subtitle">Fill out the form below and our team will respond within 24–48 business hours. For
+              membership inquiries, please select the appropriate category.</p>
+
+            <form id="contactForm" onsubmit="handleSubmit(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">Full Name *</label>
+                  <input type="text" class="form-input" placeholder="Your full name" required id="fname">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Phone Number *</label>
+                  <input type="tel" class="form-input" placeholder="e.g. 08012345678" required id="fphone">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" class="form-input" placeholder="your@email.com" id="femail">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Subject / Inquiry Type *</label>
+                <select class="form-select" required id="fsubject">
+                  <option value="">— Select a Subject —</option>
+                  <option value="membership">Membership Registration</option>
+                  <option value="loan">Agricultural Loan Inquiry</option>
+                  <option value="fattening">Cattle Fattening Program</option>
+                  <option value="vet">Veterinary Services</option>
+                  <option value="market">Market Linkage</option>
+                  <option value="training">Training & Workshops</option>
+                  <option value="complaint">Complaint / Feedback</option>
+                  <option value="other">Other Inquiry</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">LGA / Location</label>
+                <input type="text" class="form-input" placeholder="Your local government area" id="flga">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Message *</label>
+                <textarea class="form-textarea"
+                  placeholder="Please describe your inquiry, how many cattle you have, or any questions you would like answered..."
+                  required id="fmessage"></textarea>
+              </div>
+
+              <button type="submit" class="form-submit">
+                <span>📨</span> Send Message
+              </button>
+            </form>
+
+            <div class="form-success" id="formSuccess">
+              <div style="font-size:3rem;margin-bottom:1rem;">✅</div>
+              <h3>Message Sent Successfully!</h3>
+              <p>Thank you for reaching out to Alheri Cattle Co-operative Society. We will review your message and
+                respond within 24–48 business hours. A copy has been noted.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section class="map-section">
+      <div class="section-inner">
+        <div class="section-label">Find Us</div>
+        <h2 class="section-title">Our Location</h2>
+        <p class="section-desc">We are located in the heart of Jalingo, Taraba State's capital, making us easily
+          accessible from all parts of the state.</p>
+
+        <div class="map-placeholder">
+          <div class="map-pin">📍</div>
+          <div class="map-text">Alheri Cattle Co-operative Society</div>
+          <div class="map-sub">No. Gombe Street, Turaki A' Ward, Jalingo, Taraba State, Nigeria</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="background:var(--white);padding:5rem 0;">
+      <div class="section-inner">
+        <div class="section-label">FAQ</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div style="max-width:800px;margin-top:2.5rem;">
+          <div id="faqContainer"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ FOOTER (shown on all pages) ============ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo" style="margin-bottom:1rem;">
+            <div class="logo-icon" style="background:var(--golden);">🐄</div>
+            <div class="logo-text-wrap">
+              <span class="logo-name" style="font-size:0.95rem;">Alheri Cattle Multi-Purpose</span>
+              <span class="logo-sub">Co-operative Society Ltd.</span>
+            </div>
+          </div>
+          <p class="footer-desc">Empowering livestock farmers and agricultural entrepreneurs across Taraba State through
+            the power of co-operative unity, financial inclusion, and sustainable farming practices.</p>
+          <div class="footer-socials">
+            <a class="social-btn" title="Facebook">f</a>
+            <a class="social-btn" title="WhatsApp">💬</a>
+            <a class="social-btn" title="Twitter">𝕏</a>
+            <a class="social-btn" title="Email" href="mailto:alihericattlefatteningmultipur@gmail.com">@</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('about')">About Us</a></li>
+            <li><a href="#" onclick="showPage('services')">Our Services</a></li>
+            <li><a href="#" onclick="showPage('contact')">Contact Us</a></li>
+            <li><a href="#" onclick="showPage('contact')">Join Society</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Our Services</div>
+          <ul class="footer-links">
+            <li><a href="#" onclick="showPage('services')">Cattle Fattening</a></li>
+            <li><a href="#" onclick="showPage('services')">Agricultural Loans</a></li>
+            <li><a href="#" onclick="showPage('services')">Veterinary Support</a></li>
+            <li><a href="#" onclick="showPage('services')">Market Linkage</a></li>
+            <li><a href="#" onclick="showPage('services')">Member Training</a></li>
+            <li><a href="#" onclick="showPage('services')">Input Supply</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">Contact Info</div>
+          <ul class="footer-links" style="list-style:none;">
+            <li style="margin-bottom:1rem;padding:0;border:none;">
+              <a href="#"
+                style="flex-direction:column;gap:4px;align-items:flex-start;color:var(--hay);opacity:0.8;text-decoration:none;font-size:0.85rem;line-height:1.6;cursor:default;">
+                📍 No. Gombe Street,<br>&nbsp;&nbsp;&nbsp;&nbsp;Turaki A' Ward,<br>&nbsp;&nbsp;&nbsp;&nbsp;Jalingo,
+                Taraba State
+              </a>
+            </li>
+            <li style="margin-bottom:1rem;padding:0;border:none;">
+              <a href="mailto:alihericattlefatteningmultipur@gmail.com"
+                style="color:var(--hay);opacity:0.8;text-decoration:none;font-size:0.82rem;word-break:break-all;">
+                ✉️ alihericattlefatteningmultipur@gmail.com
+              </a>
+            </li>
+            <li style="padding:0;border:none;">
+              <a href="#" style="color:var(--hay);opacity:0.8;text-decoration:none;font-size:0.85rem;cursor:default;">🕐
+                Mon–Fri: 8am – 5pm</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2024 Alheri Cattle Multi-Purpose Co-operative Society Ltd. All rights reserved.</div>
+        <div class="footer-reg">Registered Co-operative Society · Taraba State, Nigeria</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============ PAGE NAVIGATION ============
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      const navEl = document.getElementById('nav-' + page);
+      if (navEl) navEl.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('navLinks').classList.remove('open');
+
+      // Trigger reveal animations
+      setTimeout(initReveal, 100);
+
+      // Run counters on home page
+      if (page === 'home') setTimeout(runCounters, 400);
+    }
+
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // ============ COUNTER ANIMATION ============
+    function runCounters() {
+      const targets = [
+        { id: 'count1', end: 350, suffix: '+' },
+        { id: 'count2', end: 2800, suffix: '+' },
+        { id: 'count3', end: 8, suffix: '+' },
+        { id: 'count4', end: 12, suffix: '' },
+      ];
+
+      targets.forEach(({ id, end, suffix }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        let current = 0;
+        const step = end / 60;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= end) { current = end; clearInterval(timer); }
+          el.textContent = Math.floor(current) + suffix;
+        }, 24);
+      });
+    }
+
+    // ============ SCROLL REVEAL ============
+    function initReveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add('visible');
+            }, i * 80);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      reveals.forEach(el => {
+        if (!el.classList.contains('visible')) {
+          observer.observe(el);
+        }
+      });
+    }
+
+    // ============ FORM SUBMISSION ============
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = '⏳ Sending...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        e.target.style.display = 'none';
+        document.getElementById('formSuccess').classList.add('show');
+      }, 1800);
+    }
+
+    // ============ FAQ ============
+    const faqs = [
+      {
+        q: "How do I become a member of the co-operative?",
+        a: "To become a member, visit our office at Gombe Street, Turaki A' Ward, Jalingo, or fill out our online contact form. You will complete a membership application, pay your registration fee, and purchase a minimum number of share units. After verification, you will receive your membership certificate."
+      },
+      {
+        q: "What are the requirements for accessing an agricultural loan?",
+        a: "To access our loan facility, you must be a Full Member for at least 3 months, have a verifiable farm or livestock enterprise, provide two guarantors who are society members, and have a regular savings record with the society. Loans are processed within 5–10 working days."
+      },
+      {
+        q: "How does the cattle fattening program work?",
+        a: "Members can enroll their cattle in our communal fattening program. Our team of experts designs tailored feeding programs, monitors health and weight gain, and when the cattle reach optimal market weight, we facilitate direct sales to buyers. Profits (minus service fees) are returned to the member."
+      },
+      {
+        q: "Are non-residents of Jalingo eligible for membership?",
+        a: "Yes. Membership is open to any farmer or agricultural entrepreneur residing or operating in Taraba State. You do not need to live in Jalingo specifically, though you may need to attend AGMs and important meetings in person."
+      },
+      {
+        q: "How are dividends calculated and distributed?",
+        a: "Annual dividends are calculated based on each member's share capital and the volume of business transacted with the society during the year. Dividends are declared at the Annual General Meeting (AGM) and paid out shortly after, in line with co-operative by-laws."
+      },
+    ];
+
+    function buildFAQ() {
+      const container = document.getElementById('faqContainer');
+      if (!container) return;
+
+      faqs.forEach((faq, i) => {
+        const item = document.createElement('div');
+        item.style.cssText = 'border:1px solid rgba(200,169,110,0.25);border-radius:10px;margin-bottom:1rem;overflow:hidden;';
+
+        const q = document.createElement('div');
+        q.style.cssText = 'padding:1.25rem 1.5rem;cursor:pointer;background:var(--cream);display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:0.92rem;color:var(--earth);transition:background 0.2s;';
+        q.innerHTML = `<span>${faq.q}</span><span class="faq-arrow" style="font-size:1.2rem;transition:transform 0.3s;color:var(--green-light);">+</span>`;
+
+        const a = document.createElement('div');
+        a.style.cssText = 'padding:0 1.5rem;max-height:0;overflow:hidden;transition:all 0.4s ease;font-size:0.88rem;line-height:1.8;color:var(--soil);background:var(--white);';
+        a.textContent = faq.a;
+
+        q.addEventListener('click', () => {
+          const isOpen = a.style.maxHeight !== '0px' && a.style.maxHeight !== '';
+          document.querySelectorAll('#faqContainer > div').forEach(d => {
+            d.querySelector('div:last-child').style.maxHeight = '0px';
+            d.querySelector('div:last-child').style.padding = '0 1.5rem';
+            d.querySelector('.faq-arrow').style.transform = 'rotate(0deg)';
+          });
+
+          if (!isOpen) {
+            a.style.maxHeight = '300px';
+            a.style.padding = '1.25rem 1.5rem';
+            q.querySelector('.faq-arrow').style.transform = 'rotate(45deg)';
+          }
+        });
+
+        item.appendChild(q);
+        item.appendChild(a);
+        container.appendChild(item);
+      });
+    }
+
+    // ============ INIT ============
+    window.addEventListener('load', () => {
+      runCounters();
+      initReveal();
+      buildFAQ();
+    });
+  </script>
+</body>
+
+</html>
